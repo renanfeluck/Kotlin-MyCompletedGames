@@ -1,10 +1,10 @@
-package com.reluck.mycompletedgames
+package com.reluck.mycompletedgames.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.reluck.mycompletedgames.data.db.Game
+import com.reluck.mycompletedgames.data.db.entity.Game
 import com.reluck.mycompletedgames.data.db.GameDatabase
 import com.reluck.mycompletedgames.repository.GameRepository
 import kotlinx.coroutines.Dispatchers

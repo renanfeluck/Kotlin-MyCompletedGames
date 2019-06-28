@@ -1,4 +1,4 @@
-package com.reluck.mycompletedgames.data.db
+package com.reluck.mycompletedgames.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,7 +7,8 @@ import androidx.room.PrimaryKey
 data class Game(val title: String,
                 val time: String,
                 val image: String,
-                val platform: String
+                val platform: String,
+                val category: String
                 ){
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

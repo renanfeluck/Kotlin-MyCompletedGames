@@ -2,8 +2,8 @@ package com.reluck.mycompletedgames.repository
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
-import com.reluck.mycompletedgames.data.db.Game
-import com.reluck.mycompletedgames.data.db.GameDao
+import com.reluck.mycompletedgames.data.db.entity.Game
+import com.reluck.mycompletedgames.data.db.dao.GameDao
 
 class GameRepository(private val gameDao: GameDao){
 

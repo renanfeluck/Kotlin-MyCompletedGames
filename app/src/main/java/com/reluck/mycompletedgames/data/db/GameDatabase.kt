@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.reluck.mycompletedgames.data.db.entity.Game
+import com.reluck.mycompletedgames.data.db.dao.GameDao
 
 @Database(
     entities = [Game::class],
