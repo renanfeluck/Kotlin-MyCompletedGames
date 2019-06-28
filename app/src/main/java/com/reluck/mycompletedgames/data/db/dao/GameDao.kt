@@ -1,10 +1,7 @@
 package com.reluck.mycompletedgames.data.db.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.reluck.mycompletedgames.data.db.entity.Game
 
 @Dao
@@ -14,4 +11,7 @@ interface GameDao {
 
     @Query("select * from completed_games")
     fun getGames(): LiveData<List<Game>>
+
+    @Delete
+    fun deleteGame(game: Game)
 }

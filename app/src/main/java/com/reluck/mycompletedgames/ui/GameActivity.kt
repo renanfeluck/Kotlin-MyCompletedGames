@@ -27,9 +27,9 @@ class GameActivity : AppCompatActivity() {
             System.out.println(gamesListed)
             recyclerView.layoutManager = LinearLayoutManager(this)
             if (gameViewModel.allGames.value != null) {
-                recyclerView.adapter = GamesAdapter(gameViewModel.allGames.value!!)
+                recyclerView.adapter = GamesAdapter(gameViewModel.allGames.value!!, gameViewModel)
             } else {
-                recyclerView.adapter = GamesAdapter(games)
+                recyclerView.adapter = GamesAdapter(games, gameViewModel)
             }
         })
 
@@ -38,9 +38,6 @@ class GameActivity : AppCompatActivity() {
             startActivity(intent)
             //gameViewModel.insert(Game("CS:GO", "10:00", "https://www.google.com", "PC"))
         }
-
-        games.add(Game("CS:GO", "10:00", "https://www.google.com", "PC"))
-
 
 
     }

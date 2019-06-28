@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.reluck.mycompletedgames.R
+import com.reluck.mycompletedgames.data.db.GameDatabase
 import com.reluck.mycompletedgames.data.db.entity.Game
+import com.reluck.mycompletedgames.repository.GameRepository
+import com.reluck.mycompletedgames.ui.GameViewModel
+import kotlinx.coroutines.Dispatchers
 
-class GamesAdapter(val games: List<Game>): RecyclerView.Adapter<GamesAdapter.ViewHolder>() {
-
+class GamesAdapter(val games: MutableList<Game>, val gameViewModel: GameViewModel): RecyclerView.Adapter<GamesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): ViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.game_row, parent, false)
@@ -24,9 +28,13 @@ class GamesAdapter(val games: List<Game>): RecyclerView.Adapter<GamesAdapter.Vie
         holder.gameTitle.text = games[position].title
         holder.gameTime.text = games[position].time
         holder.gameCategory.text = games[position].category
+
+        holder.itemView.setOnClickListener{
+                holder.itemView.setOnClickListener{
+                    gameViewModel.delete(games[position])
+                    games.removeAt(position)}
+        }
     }
-
-
 
     class ViewHolder(itemView: View, context: Context): RecyclerView.ViewHolder(itemView) {
 
@@ -35,5 +43,4 @@ class GamesAdapter(val games: List<Game>): RecyclerView.Adapter<GamesAdapter.Vie
         val gameCategory: TextView = itemView.findViewById(R.id.textCategory)
 
     }
-
 }

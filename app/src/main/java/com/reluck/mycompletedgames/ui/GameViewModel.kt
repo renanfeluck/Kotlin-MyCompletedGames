@@ -8,8 +8,8 @@ import com.reluck.mycompletedgames.data.db.entity.Game
 import com.reluck.mycompletedgames.data.db.GameDatabase
 import com.reluck.mycompletedgames.repository.GameRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-
 class GameViewModel(application: Application): AndroidViewModel(application) {
 
     private val repository: GameRepository
@@ -24,4 +24,12 @@ class GameViewModel(application: Application): AndroidViewModel(application) {
     fun insert(game: Game) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(game)
     }
+
+
+    fun delete(game: Game) {
+        GlobalScope.launch {
+            repository.delete(game)
+        }
+    }
 }
+
