@@ -32,7 +32,6 @@ class GamesAdapter(val games: List<Game>): RecyclerView.Adapter<GamesAdapter.Vie
         val gameTitle: TextView = itemView.findViewById(R.id.textTitle)
         val gameTime: TextView = itemView.findViewById(R.id.textTime)
 
-
     }
 
 }
