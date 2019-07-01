@@ -10,7 +10,7 @@ interface GameDao {
     fun upsert(game: Game)
 
     @Query("select * from completed_games")
-    fun getGames(): LiveData<List<Game>>
+    fun getGames(): LiveData<MutableList<Game>>
 
     @Delete
     fun deleteGame(game: Game)

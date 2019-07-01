@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 class GameViewModel(application: Application): AndroidViewModel(application) {
 
     private val repository: GameRepository
-    val allGames: LiveData<List<Game>>
+    val allGames: LiveData<MutableList<Game>>
 
     init {
         val gamesDao = GameDatabase.invoke(application).completedGames()

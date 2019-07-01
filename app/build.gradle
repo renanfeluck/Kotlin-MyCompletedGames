@@ -6,7 +6,6 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: "kotlin-kapt"
 
-
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -49,4 +48,9 @@ dependencies {
 
     // ViewModel Kotlin support
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0-alpha01"
+
+    // Kodein
+    implementation 'org.kodein.di:kodein-di-generic-jvm:6.3.2'
+    implementation 'org.kodein.di:kodein-di-framework-android-core:6.3.2'
+
 }

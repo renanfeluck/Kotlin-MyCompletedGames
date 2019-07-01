@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 
 class GameRepository(private val gameDao: GameDao){
 
-    val allGames: LiveData<List<Game>> = gameDao.getGames()
+    val allGames: LiveData<MutableList<Game>> = gameDao.getGames()
 
     @WorkerThread
     suspend fun insert(game: Game){

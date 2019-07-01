@@ -2,7 +2,6 @@ package com.reluck.mycompletedgames.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.reluck.mycompletedgames.data.db.GameDatabase
 import com.reluck.mycompletedgames.data.db.entity.Game

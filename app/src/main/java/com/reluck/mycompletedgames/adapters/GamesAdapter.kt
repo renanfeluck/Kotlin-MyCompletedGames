@@ -14,7 +14,7 @@ import com.reluck.mycompletedgames.repository.GameRepository
 import com.reluck.mycompletedgames.ui.GameViewModel
 import kotlinx.coroutines.Dispatchers
 
-class GamesAdapter(val games: MutableList<Game>, val gameViewModel: GameViewModel): RecyclerView.Adapter<GamesAdapter.ViewHolder>() {
+class GamesAdapter(var games: MutableList<Game>, val gameViewModel: GameViewModel): RecyclerView.Adapter<GamesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): ViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.game_row, parent, false)
@@ -30,9 +30,8 @@ class GamesAdapter(val games: MutableList<Game>, val gameViewModel: GameViewMode
         holder.gameCategory.text = games[position].category
 
         holder.itemView.setOnClickListener{
-                holder.itemView.setOnClickListener{
-                    gameViewModel.delete(games[position])
-                    games.removeAt(position)}
+            gameViewModel.delete(games[position])
+            notifyDataSetChanged()
         }
     }
 
