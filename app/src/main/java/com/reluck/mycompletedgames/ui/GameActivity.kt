@@ -29,12 +29,13 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
 
     private var filterApplied: Boolean = false
     private lateinit var gameViewModel: GameViewModel
+    private lateinit var mAdapter: GamesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val games: ArrayList<Game> = ArrayList()
+        val games: MutableList<Game> = ArrayList()
 
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
 
@@ -42,10 +43,12 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
             System.out.println(gamesListed)
             recyclerView.layoutManager = LinearLayoutManager(this)
             if (gameViewModel.allGames.value != null) {
-                recyclerView.adapter = GamesAdapter(gameViewModel.allGames.value!!, gameViewModel)
+                mAdapter = GamesAdapter(gameViewModel.allGames.value!!, gameViewModel)
             } else {
-                recyclerView.adapter = GamesAdapter(games, gameViewModel)
+                mAdapter = GamesAdapter(games, gameViewModel)
             }
+            recyclerView.adapter = mAdapter
+
         })
 
         initClickListener()
@@ -62,6 +65,8 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
         if (id == layPc.id){
             checkFilterApplied()
             gameViewModel.getPlatformGame("PC")
+            println(gameViewModel.allGames.value)
+            mAdapter.notifyDataSetChanged()
         }
     }
 
