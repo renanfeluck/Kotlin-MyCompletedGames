@@ -5,19 +5,23 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.reluck.mycompletedgames.data.db.entity.Game
-import com.reluck.mycompletedgames.data.db.GameDatabase
 import com.reluck.mycompletedgames.repository.GameRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-class GameViewModel(application: Application): AndroidViewModel(application) {
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 
-    private val repository: GameRepository
+class GameViewModel(application: Application): AndroidViewModel(application), KodeinAware {
+
+
+    override val kodein by closestKodein()
+    private val repository: GameRepository by instance()
+
     val allGames: LiveData<MutableList<Game>>
 
     init {
-        val gamesDao = GameDatabase.invoke(application).completedGames()
-        repository = GameRepository(gamesDao)
         allGames = repository.allGames
     }
 
