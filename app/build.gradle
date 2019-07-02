@@ -53,4 +53,6 @@ dependencies {
     implementation 'org.kodein.di:kodein-di-generic-jvm:6.3.2'
     implementation 'org.kodein.di:kodein-di-framework-android-x:6.3.2'
 
+    implementation 'com.google.android.material:material:1.1.0-alpha06'
+
 }
