@@ -19,10 +19,14 @@ class GameViewModel(application: Application): AndroidViewModel(application), Ko
     override val kodein by closestKodein()
     private val repository: GameRepository by instance()
 
-    val allGames: LiveData<MutableList<Game>>
+    var allGames: LiveData<MutableList<Game>>
 
     init {
         allGames = repository.allGames
+    }
+
+    fun getPlatformGame(platform: String) {
+      allGames = repository.filtredPlatformGame(platform)
     }
 
     fun insert(game: Game) = viewModelScope.launch(Dispatchers.IO) {

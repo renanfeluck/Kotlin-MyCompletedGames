@@ -39,7 +39,7 @@ class GamesAdapter(var games: MutableList<Game>, val gameViewModel: GameViewMode
                 .setTitle("Do you want to delete this entry?")
                 .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->  delete(position) })
                 .setNegativeButton("Cancel", null)
-                .show();
+                .show()
 
         }
 

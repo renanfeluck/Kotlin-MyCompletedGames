@@ -7,20 +7,91 @@
         android:layout_height="match_parent"
         tools:context=".ui.GameActivity">
 
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:id="@+id/layFilter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@color/colorPrimaryDark">
+
+        <LinearLayout
+            style="@style/LinearFilter"
+            android:id="@+id/layPc"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imgPc"
+                android:src="@drawable/ic_computer_black_24dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PC"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LinearFilter"
+            android:layout_width="wrap_content"
+            android:id="@+id/layXbox"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imgXbox"
+                android:src="@drawable/ic_gamepad_black_24dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XBOX"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LinearFilter"
+            android:layout_width="wrap_content"
+            android:id="@+id/layPs4"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imgPs4"
+                android:src="@drawable/ic_videogame_asset_black_24dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PS4"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent">
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layFilter">
     </androidx.recyclerview.widget.RecyclerView>
 
     <Button
             android:id="@+id/btnAddToDB"
+            android:text="Add new Game"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>

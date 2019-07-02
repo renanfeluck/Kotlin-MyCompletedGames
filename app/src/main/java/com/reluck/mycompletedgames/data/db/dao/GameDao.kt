@@ -12,6 +12,9 @@ interface GameDao {
     @Query("select * from completed_games")
     fun getGames(): LiveData<MutableList<Game>>
 
+    @Query("select * from completed_games WHERE platform = :platform")
+    fun getPlatformGame(platform: String): LiveData<MutableList<Game>>
+
     @Delete
     fun deleteGame(game: Game)
 }

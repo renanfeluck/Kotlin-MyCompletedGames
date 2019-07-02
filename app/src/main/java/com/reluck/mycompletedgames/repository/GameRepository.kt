@@ -11,6 +11,7 @@ import kotlinx.coroutines.withContext
 class GameRepository(private val gameDao: GameDao){
 
     val allGames: LiveData<MutableList<Game>> = gameDao.getGames()
+    fun filtredPlatformGame(platform: String): LiveData<MutableList<Game>> = gameDao.getPlatformGame(platform)
 
     @WorkerThread
     suspend fun insert(game: Game){
