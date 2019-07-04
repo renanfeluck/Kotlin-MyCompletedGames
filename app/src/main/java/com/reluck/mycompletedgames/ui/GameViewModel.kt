@@ -3,6 +3,7 @@ package com.reluck.mycompletedgames.ui
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.reluck.mycompletedgames.data.db.entity.Game
 import com.reluck.mycompletedgames.repository.GameRepository
@@ -25,8 +26,12 @@ class GameViewModel(application: Application): AndroidViewModel(application), Ko
         allGames = repository.allGames
     }
 
-    fun getPlatformGame(platform: String) {
-      allGames = repository.filtredPlatformGame(platform)
+    fun getPlatformGame(platform: String): LiveData<MutableList<Game>> {
+      return repository.filtredPlatformGame(platform)
+    }
+
+    fun getAllGames(){
+        allGames = repository.allGames
     }
 
     fun insert(game: Game) = viewModelScope.launch(Dispatchers.IO) {

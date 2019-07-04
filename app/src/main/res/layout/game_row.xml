@@ -30,12 +30,12 @@
 
 
     <TextView
-        android:id="@+id/textCategory"
+        android:id="@+id/textPlatform"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="36dp"
         android:layout_marginTop="20dp"
-        android:text="RPG"
+        android:text="PS4"
         android:textSize="30sp"
         app:layout_constraintLeft_toRightOf="@id/imgGame"
         app:layout_constraintTop_toBottomOf="@+id/textTitle" />
@@ -47,9 +47,9 @@
         android:layout_marginStart="36dp"
         android:text="10:00"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textCategory"
-        app:layout_constraintStart_toEndOf="@+id/textCategory"
-        app:layout_constraintTop_toTopOf="@+id/textCategory" />
+        app:layout_constraintBottom_toBottomOf="@+id/textPlatform"
+        app:layout_constraintStart_toEndOf="@+id/textPlatform"
+        app:layout_constraintTop_toTopOf="@+id/textPlatform" />
 
     <ImageView
         android:layout_width="48dp"

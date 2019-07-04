@@ -3,6 +3,7 @@ package com.reluck.mycompletedgames.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -14,10 +15,12 @@ import com.reluck.mycompletedgames.data.db.entity.Game
 import kotlinx.android.synthetic.main.activity_main.*
 
 class GameActivity : AppCompatActivity(), View.OnClickListener {
+
     override fun onClick(v: View) {
         when (v.id)
         {
             btnAddToDB.id -> {
+                clearFilters()
                 val intent = Intent(this, AddGameActivity::class.java)
                 startActivity(intent)
             }
@@ -27,6 +30,7 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    val games: MutableList<Game> = ArrayList()
     private var filterApplied: Boolean = false
     private lateinit var gameViewModel: GameViewModel
     private lateinit var mAdapter: GamesAdapter
@@ -35,20 +39,16 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val games: MutableList<Game> = ArrayList()
-
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        mAdapter = GamesAdapter(games, gameViewModel)
+        recyclerView.adapter = mAdapter
 
         gameViewModel.allGames.observe(this, Observer { gamesListed ->
-            System.out.println(gamesListed)
-            recyclerView.layoutManager = LinearLayoutManager(this)
-            if (gameViewModel.allGames.value != null) {
-                mAdapter = GamesAdapter(gameViewModel.allGames.value!!, gameViewModel)
-            } else {
-                mAdapter = GamesAdapter(games, gameViewModel)
+            if (gameViewModel.allGames.value != null && !filterApplied) {
+                mAdapter.games = gameViewModel.allGames.value!!
+                mAdapter.notifyDataSetChanged()
             }
-            recyclerView.adapter = mAdapter
-
         })
 
         initClickListener()
@@ -63,18 +63,43 @@ class GameActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun handleFilterClick(id: Int){
         if (id == layPc.id){
-            checkFilterApplied()
-            gameViewModel.getPlatformGame("PC")
-            println(gameViewModel.allGames.value)
+            checkFilterApplied("PC")
+        }
+        if (id == layPs4.id){
+            checkFilterApplied("PS4")
+        }
+        if (id == layXbox.id){
+            checkFilterApplied("XBOX")
+        }
+    }
+
+    private fun checkFilterApplied(platform: String){
+        if (filterApplied) clearFilters() else applyFilter(platform)
+    }
+
+    private fun clearFilters() {
+        filterApplied = false
+        updateAdapterGames()
+    }
+
+    private fun applyFilter(platform: String) {
+        filterApplied = true
+        val filtredGames = gameViewModel.getPlatformGame(platform)
+        filtredGames.observe(this, Observer { res -> filter(res) })
+    }
+
+    private fun filter(res: MutableList<Game>){
+        Log.d("Filtred Observer", res.toString())
+        if (filterApplied) {
+            mAdapter.games = res
             mAdapter.notifyDataSetChanged()
         }
     }
 
-    private fun checkFilterApplied(){
-        if (filterApplied) clearFilters()
-    }
-
-    private fun clearFilters() {
-
+    private fun updateAdapterGames(){
+        gameViewModel.getAllGames()
+        println("All games ${gameViewModel.allGames.value}")
+        mAdapter.games = if (gameViewModel.allGames.value != null) gameViewModel.allGames.value!! else ArrayList()
+        mAdapter.notifyDataSetChanged()
     }
 }

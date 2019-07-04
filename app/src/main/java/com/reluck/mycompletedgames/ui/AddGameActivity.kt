@@ -44,8 +44,9 @@ class AddGameActivity : AppCompatActivity() {
                     editTitle.text.toString(),
                     editTime.text.toString(),
                     "Url",
-                    spCategory.selectedItem.toString(),
-                    spPlatform.selectedItem.toString()
+                    spPlatform.selectedItem.toString(),
+                    spCategory.selectedItem.toString()
+
                     ))
             finish()
         }

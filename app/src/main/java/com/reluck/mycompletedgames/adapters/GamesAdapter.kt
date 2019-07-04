@@ -31,7 +31,7 @@ class GamesAdapter(var games: MutableList<Game>, val gameViewModel: GameViewMode
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.gameTitle.text = games[position].title
         holder.gameTime.text = games[position].time
-        holder.gameCategory.text = games[position].category
+        holder.gamePlatform.text = games[position].platform
 
         holder.itemView.imgDelete.setOnClickListener{
 
@@ -54,7 +54,7 @@ class GamesAdapter(var games: MutableList<Game>, val gameViewModel: GameViewMode
 
         val gameTitle: TextView = itemView.findViewById(R.id.textTitle)
         val gameTime: TextView = itemView.findViewById(R.id.textTime)
-        val gameCategory: TextView = itemView.findViewById(R.id.textCategory)
+        val gamePlatform: TextView = itemView.findViewById(R.id.textPlatform)
         val imgDelete: ImageView = itemView.findViewById(R.id.imgDelete)
 
     }
