@@ -43,7 +43,7 @@ class AddGameActivity : AppCompatActivity() {
             addGameViewModel.insert(Game(
                     editTitle.text.toString(),
                     editTime.text.toString(),
-                    "Url",
+                    editImgUrl.text.toString(),
                     spPlatform.selectedItem.toString(),
                     spCategory.selectedItem.toString()
 
